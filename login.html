@@ -6,6 +6,7 @@
     <title>SkillSync Login</title>
 
     <link rel="stylesheet" href="style.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -48,6 +49,11 @@
 
         <input id="username" type="text" placeholder="Username">
         <input id="password" type="password" placeholder="Password">
+        <div class="captcha-box">
+    <div class="g-recaptcha"
+         data-sitekey="6Lffqe0sAAAAAD3G4fvKrBdGuVFgvT_Eh1YZlOSx">
+    </div>
+</div>
 
         <button class="gold-btn full-btn" onclick="userLogin()">
             User Login
