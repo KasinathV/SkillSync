@@ -53,6 +53,8 @@ Concept Statement:
 This creates a future-ready concept similar to real esports competitive ranking systems.
 
 ---
+# Folder Structure
+```text
 SkillSync/
 │
 ├── index.html
@@ -73,6 +75,8 @@ SkillSync/
 ├── README.md
 │
 └── images/
+```
+
 # Features
 
 ## User Authentication
