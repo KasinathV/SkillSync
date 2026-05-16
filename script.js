@@ -81,8 +81,41 @@ function userLogin() {
 
     saveLogin("User", username);
 
-    alert("Login successful. Redirecting to home page...");
+    function userLogin() {
+    const username = document.getElementById("username")?.value;
+    const captchaResponse = grecaptcha.getResponse();
 
+    if (!username || username.trim() === "") {
+        alert("Please enter username");
+        return;
+    }
+
+    if (!captchaResponse) {
+        alert("Please verify that you are human");
+        return;
+    }
+
+    localStorage.removeItem("isAdmin");
+    localStorage.setItem("currentUser", username);
+
+    saveLogin("User", username);
+
+    const loader = document.getElementById("loadingScreen");
+
+    if (loader) {
+        loader.style.display = "flex";
+
+        const loadingText = loader.querySelector("h2");
+
+        if (loadingText) {
+            loadingText.textContent = "Login successful. Redirecting...";
+        }
+
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 1500);
+    }
+}
     setTimeout(() => {
         window.location.href = "index.html";
     }, 1200);
