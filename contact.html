@@ -100,15 +100,22 @@
 
     <br><br>
 
-    <div class="premium-card">
-        <h2>Send a Message</h2>
+   <div class="premium-card">
+    <h2>Send a Message</h2>
 
-        <textarea rows="8" placeholder="Write your message here..."></textarea>
+    <input id="contactName" type="text" placeholder="Your Name">
 
-        <button class="gold-btn">
-            Send Message
-        </button>
-    </div>
+    <input id="contactEmail" type="email" placeholder="Your Email">
+
+    <textarea
+        id="contactMessage"
+        rows="8"
+        placeholder="Write your message here..."></textarea>
+
+    <button class="gold-btn" onclick="sendContactMessage()">
+        Send Message
+    </button>
+</div>
 </section>
 
 <!-- POPUP -->
