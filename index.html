@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSync Premium</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">Skill<span>Sync</span></div>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="about.html">About</a></li>
+
+                <li>
+                    <a href="login.html" id="loginNav" class="nav-login-btn">
+                        Login
+                    </a>
+                </li>
+
+                <li><a href="admin.html">Admin Panel</a></li>
+            </ul>
+
+            <button class="gold-btn" onclick="openPopup()">
+                Start Matchmaking
+            </button>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="hero-left reveal">
+            <p class="tagline">ONE SKILL. ONE RANK. NO LUCK.</p>
+
+            <h1 class="typing" id="typingText"></h1>
+
+            <p class="description">
+                SkillSync is a premium competitive gaming ecosystem designed
+                for serious players who demand fair ranking,
+                smart matchmaking, and measurable performance progression.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="leaderboard.html">
+                    <button class="gold-btn">
+                        View Leaderboard
+                    </button>
+                </a>
+
+                <a href="games.html">
+                    <button class="outline-btn">
+                        Explore Games
+                    </button>
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-right reveal">
+            <div class="premium-card">
+                <h2>Elite Competitive Tiers</h2>
+
+                <div class="rank-item">
+                    <span>🏆 TITAN</span>
+                    <span>Top 1%</span>
+                </div>
+
+                <div class="rank-item">
+                    <span>🔥 MASTER</span>
+                    <span>Top 10%</span>
+                </div>
+
+                <div class="rank-item">
+                    <span>💎 DIAMOND</span>
+                    <span>Top 20%</span>
+                </div>
+
+                <div class="rank-item">
+                    <span>⭐ GOLD</span>
+                    <span>Top 50%</span>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section reveal">
+        <h2>WHY SKILLSYNC</h2>
+
+        <div class="grid2">
+
+            <div class="premium-card">
+                <h2>Transparent Ranking</h2>
+                <p class="description">
+                    Progress based on measurable skill instead of hidden algorithms.
+                </p>
+            </div>
+
+            <div class="premium-card">
+                <h2>Smart Matchmaking</h2>
+                <p class="description">
+                    Find balanced competitive opponents based on real performance.
+                </p>
+            </div>
+
+            <div class="premium-card">
+                <h2>Performance Analytics</h2>
+                <p class="description">
+                    Track growth, win rates, rankings, and competitive trends.
+                </p>
+            </div>
+
+            <div class="premium-card">
+                <h2>Competitive Integrity</h2>
+                <p class="description">
+                    Designed for serious players who want fair progression.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- POPUP -->
+    <div class="popup" id="popup">
+        <div class="popup-box">
+            <h2>Competitive Matchmaking</h2>
+
+            <input type="text" placeholder="Player Name">
+            <input type="number" placeholder="Win Rate %">
+            <input type="number" placeholder="K/D Ratio">
+            <input type="number" placeholder="Consistency Score">
+
+            <div class="popup-buttons">
+                <button class="gold-btn" onclick="startMatchmaking()">
+                    Find Match
+                </button>
+
+                <button class="outline-btn" onclick="closePopup()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOADING -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+        <h2>Finding Competitive Match...</h2>
+    </div>
+
+    <!-- FLOATING CONTACT -->
+    <a href="contact.html" class="floating-contact">
+        <i class="fas fa-comment-dots"></i>
+        Contact Us
+    </a>
+
+    <script src="script.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+
+</body>
+</html>

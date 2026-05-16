@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSync Games</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="logo">Skill<span>Sync</span></div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <li><a href="games.html" class="active">Games</a></li>
+            <li><a href="about.html">About</a></li>
+
+            <li>
+                <a href="login.html" id="loginNav" class="nav-login-btn">
+                    Login
+                </a>
+            </li>
+
+            <li><a href="admin.html">Admin Panel</a></li>
+        </ul>
+
+        <button class="gold-btn" onclick="openPopup()">
+            <i class="fas fa-crosshairs"></i> Start Matchmaking
+        </button>
+    </nav>
+</header>
+
+<section class="games-dashboard reveal">
+
+    <div class="top-stats">
+
+        <div class="stat-box">
+            <i class="fas fa-users"></i>
+            <div>
+                <h3>12.4K</h3>
+                <p>Active Players</p>
+            </div>
+        </div>
+
+        <div class="stat-box">
+            <i class="fas fa-trophy"></i>
+            <div>
+                <h3>230+</h3>
+                <p>Tournaments</p>
+            </div>
+        </div>
+
+        <div class="stat-box">
+            <i class="fas fa-satellite-dish"></i>
+            <div>
+                <h3>156</h3>
+                <p>Live Matches</p>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search Games...">
+        </div>
+
+    </div>
+
+    <div class="games-header">
+        <h1>Popular Games & Esports</h1>
+
+        <div class="game-filters">
+            <button class="filter-active">All Games</button>
+            <button>FPS</button>
+            <button>Battle Royale</button>
+            <button>MOBA</button>
+        </div>
+    </div>
+
+    <div class="games-grid">
+
+        <!-- VALORANT -->
+        <div class="esport-card">
+            <img src="https://img.redbull.com/images/c_limit,w_1500,h_1000/f_auto,q_auto/redbullcom/2020/4/19/d1jrdrpou7hvstulfozq/red-bull-campus-clutch-valorant-agents-phoenix-jett">
+
+            <div class="card-content">
+                <h2>VALORANT</h2>
+                <span class="genre">FPS</span>
+
+                <p>Tactical shooter with competitive ranked gameplay.</p>
+
+                <div class="mini-stats">
+                    <span><i class="fas fa-user"></i> 7.1K</span>
+                    <span><i class="fas fa-trophy"></i> 110</span>
+                </div>
+
+                <div class="card-actions">
+                    <button class="outline-btn"
+                        onclick="window.open('https://playvalorant.com/', '_blank')">
+                        Details
+                    </button>
+
+                    <button class="gold-btn"
+                        onclick="launchGame('VALORANT', 'https://playvalorant.com/')">
+                        Start Competing
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CS2 -->
+        <div class="esport-card">
+            <img src="https://cdn.mos.cms.futurecdn.net/v2/t:0,l:481,cw:2880,ch:2160,q:80,w:2560/xz2HxeuCGUzmZKoWCdp8JV.jpg">
+
+            <div class="card-content">
+                <h2>CS2</h2>
+                <span class="genre">FPS</span>
+
+                <p>Precision tactical gameplay with serious competition.</p>
+
+                <div class="mini-stats">
+                    <span><i class="fas fa-user"></i> 6.3K</span>
+                    <span><i class="fas fa-trophy"></i> 98</span>
+                </div>
+
+                <div class="card-actions">
+                    <button class="outline-btn"
+                        onclick="window.open('https://www.counter-strike.net/', '_blank')">
+                        Details
+                    </button>
+
+                    <button class="gold-btn"
+                        onclick="launchGame('CS2', 'https://www.counter-strike.net/')">
+                        Start Competing
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- APEX -->
+        <div class="esport-card">
+            <img src="https://assets-prd.ignimgs.com/2023/02/16/apexrevelry-1676588335122.jpg?crop=1%3A1%2Csmart&format=jpg&auto=webp&quality=80">
+
+            <div class="card-content">
+                <h2>APEX LEGENDS</h2>
+                <span class="genre">BR</span>
+
+                <p>Fast paced battle royale with elite competitive play.</p>
+
+                <div class="mini-stats">
+                    <span><i class="fas fa-user"></i> 5.4K</span>
+                    <span><i class="fas fa-trophy"></i> 86</span>
+                </div>
+
+                <div class="card-actions">
+                    <button class="outline-btn"
+                        onclick="window.open('https://www.ea.com/games/apex-legends', '_blank')">
+                        Details
+                    </button>
+
+                    <button class="gold-btn"
+                        onclick="launchGame('APEX LEGENDS', 'https://www.ea.com/games/apex-legends')">
+                        Start Competing
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FORTNITE -->
+        <div class="esport-card">
+            <img src="https://cms-assets.unrealengine.com/cm6l5gfpm05kr07my04cqgy2x/resize=fit:clip,width:1920/quality=value:80/cmmx0tghpa6fb06oirn2s022g">
+
+            <div class="card-content">
+                <h2>FORTNITE</h2>
+                <span class="genre">BR</span>
+
+                <p>Competitive building battles and ranked tournaments.</p>
+
+                <div class="mini-stats">
+                    <span><i class="fas fa-user"></i> 6.9K</span>
+                    <span><i class="fas fa-trophy"></i> 105</span>
+                </div>
+
+                <div class="card-actions">
+                    <button class="outline-btn"
+                        onclick="window.open('https://www.fortnite.com/', '_blank')">
+                        Details
+                    </button>
+
+                    <button class="gold-btn"
+                        onclick="launchGame('FORTNITE', 'https://www.fortnite.com/')">
+                        Start Competing
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEAGUE -->
+        <div class="esport-card">
+            <img src="https://i0.wp.com/highschool.latimes.com/wp-content/uploads/2021/09/league-of-legends.jpeg?fit=1200%2C668&ssl=1">
+
+            <div class="card-content">
+                <h2>LEAGUE OF LEGENDS</h2>
+                <span class="genre">MOBA</span>
+
+                <p>Competitive strategy and esports tournament action.</p>
+
+                <div class="mini-stats">
+                    <span><i class="fas fa-user"></i> 8.2K</span>
+                    <span><i class="fas fa-trophy"></i> 132</span>
+                </div>
+
+                <div class="card-actions">
+                    <button class="outline-btn"
+                        onclick="window.open('https://www.leagueoflegends.com/', '_blank')">
+                        Details
+                    </button>
+
+                    <button class="gold-btn"
+                        onclick="launchGame('LEAGUE OF LEGENDS', 'https://www.leagueoflegends.com/')">
+                        Start Competing
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- DOTA -->
+        <div class="esport-card">
+            <img src="https://i.pcmag.com/imagery/reviews/00xeme7ybg1aolezzfqxhjv-4-hero-image-gallery.fit_scale.size_1050x594.v1569475078.jpg">
+
+            <div class="card-content">
+                <h2>DOTA 2</h2>
+                <span class="genre">MOBA</span>
+
+                <p>Legendary high skill strategy competition.</p>
+
+                <div class="mini-stats">
+                    <span><i class="fas fa-user"></i> 4.1K</span>
+                    <span><i class="fas fa-trophy"></i> 68</span>
+                </div>
+
+                <div class="card-actions">
+                    <button class="outline-btn"
+                        onclick="window.open('https://www.dota2.com/', '_blank')">
+                        Details
+                    </button>
+
+                    <button class="gold-btn"
+                        onclick="launchGame('DOTA 2', 'https://www.dota2.com/')">
+                        Start Competing
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<div class="popup" id="popup">
+    <div class="popup-box">
+        <h2>Competitive Matchmaking</h2>
+
+        <input type="text" placeholder="Player Name">
+        <input type="number" placeholder="Win Rate %">
+        <input type="number" placeholder="K/D Ratio">
+        <input type="number" placeholder="Consistency Score">
+
+        <div class="popup-buttons">
+            <button class="gold-btn" onclick="startMatchmaking()">Find Match</button>
+            <button class="outline-btn" onclick="closePopup()">Close</button>
+        </div>
+    </div>
+</div>
+
+<div class="loading-screen" id="loadingScreen">
+    <div class="loader"></div>
+    <h2>Finding Competitive Match...</h2>
+</div>
+
+<a href="contact.html" class="floating-contact">
+    <i class="fas fa-comment-dots"></i>
+    Contact Us
+</a>
+
+<script src="script.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+
+</body>
+</html>

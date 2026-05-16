@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSync Leaderboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="logo">Skill<span>Sync</span></div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="leaderboard.html" class="active">Leaderboard</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="about.html">About</a></li>
+
+            <li>
+                <a href="login.html" id="loginNav" class="nav-login-btn">
+                    Login
+                </a>
+            </li>
+
+            <li><a href="admin.html">Admin Panel</a></li>
+        </ul>
+
+        <button class="gold-btn" onclick="openPopup()">
+            Start Matchmaking
+        </button>
+    </nav>
+</header>
+
+<section class="section reveal">
+    <h2>GLOBAL LEADERBOARD</h2>
+
+    <p class="description" style="margin-bottom: 35px;">
+        Top competitive players in the SkillSync ecosystem.
+    </p>
+
+    <div class="player-card">
+        <span>🥇 Alex_X99</span>
+        <span>TITAN</span>
+    </div>
+
+    <div class="player-card">
+        <span>🥈 ShadowKing</span>
+        <span>MASTER</span>
+    </div>
+
+    <div class="player-card">
+        <span>🥉 GhostAim</span>
+        <span>DIAMOND</span>
+    </div>
+
+    <div class="player-card">
+        <span>⚡ RapidShot</span>
+        <span>GOLD</span>
+    </div>
+
+    <div class="player-card">
+        <span>🔥 SniperSoul</span>
+        <span>MASTER</span>
+    </div>
+
+    <div class="player-card">
+        <span>💀 DarkWolf</span>
+        <span>DIAMOND</span>
+    </div>
+
+    <div class="player-card">
+        <span>🎮 NightHunter</span>
+        <span>ROOKIE</span>
+    </div>
+</section>
+
+<div class="popup" id="popup">
+    <div class="popup-box">
+        <h2>Competitive Matchmaking</h2>
+
+        <input type="text" placeholder="Player Name">
+        <input type="number" placeholder="Win Rate %">
+        <input type="number" placeholder="K/D Ratio">
+        <input type="number" placeholder="Consistency Score">
+
+        <div class="popup-buttons">
+            <button class="gold-btn" onclick="startMatchmaking()">
+                Find Match
+            </button>
+
+            <button class="outline-btn" onclick="closePopup()">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="loading-screen" id="loadingScreen">
+    <div class="loader"></div>
+    <h2>Finding Competitive Match...</h2>
+</div>
+
+<a href="contact.html" class="floating-contact">
+    <i class="fas fa-comment-dots"></i>
+    Contact Us
+</a>
+
+<script src="script.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+
+</body>
+</html>
