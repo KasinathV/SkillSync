@@ -875,3 +875,9 @@ select:focus {
         flex-direction: column;
     }
 }
+/* captcha */
+.captcha-box {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}
