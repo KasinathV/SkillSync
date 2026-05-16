@@ -72,9 +72,7 @@ SkillSync/
 ├── package.json
 ├── package-lock.json
 │
-├── README.md
-│
-└── images/
+└── README.md
 ```
 
 # Features
