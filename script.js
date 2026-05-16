@@ -64,9 +64,15 @@ function saveLogin(type, username) {
 ========================= */
 function userLogin() {
     const username = document.getElementById("username")?.value;
+    const captchaResponse = grecaptcha.getResponse();
 
     if (!username || username.trim() === "") {
         alert("Please enter username");
+        return;
+    }
+
+    if (!captchaResponse) {
+        alert("Please verify that you are human");
         return;
     }
 
@@ -81,7 +87,6 @@ function userLogin() {
         window.location.href = "index.html";
     }, 1200);
 }
-
 /* =========================
    ADMIN LOGIN
 ========================= */
