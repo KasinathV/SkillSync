@@ -13,7 +13,9 @@ function closePopup() {
 
 window.addEventListener("click", function (e) {
     const popup = document.getElementById("popup");
-    if (popup && e.target === popup) closePopup();
+    if (popup && e.target === popup) {
+        closePopup();
+    }
 });
 
 /* =========================
@@ -27,6 +29,12 @@ function startMatchmaking() {
     if (loader) {
         loader.style.display = "flex";
 
+        const loadingText = loader.querySelector("h2");
+
+        if (loadingText) {
+            loadingText.textContent = "Finding Competitive Match...";
+        }
+
         setTimeout(() => {
             window.location.href = "games.html";
         }, 2200);
@@ -34,7 +42,7 @@ function startMatchmaking() {
 }
 
 /* =========================
-   LOGIN STORAGE
+   SAVE LOGIN
 ========================= */
 function saveLogin(type, username) {
     let history = JSON.parse(localStorage.getItem("loginHistory")) || [];
@@ -64,26 +72,8 @@ function saveLogin(type, username) {
 ========================= */
 function userLogin() {
     const username = document.getElementById("username")?.value;
-    const captchaResponse = grecaptcha.getResponse();
-
-    if (!username || username.trim() === "") {
-        alert("Please enter username");
-        return;
-    }
-
-    if (!captchaResponse) {
-        alert("Please verify that you are human");
-        return;
-    }
-
-    localStorage.removeItem("isAdmin");
-    localStorage.setItem("currentUser", username);
-
-    saveLogin("User", username);
-
-    function userLogin() {
-    const username = document.getElementById("username")?.value;
-    const captchaResponse = grecaptcha.getResponse();
+    const captchaResponse =
+        typeof grecaptcha !== "undefined" ? grecaptcha.getResponse() : true;
 
     if (!username || username.trim() === "") {
         alert("Please enter username");
@@ -114,12 +104,11 @@ function userLogin() {
         setTimeout(() => {
             window.location.href = "index.html";
         }, 1500);
+    } else {
+        window.location.href = "index.html";
     }
 }
-    setTimeout(() => {
-        window.location.href = "index.html";
-    }, 1200);
-}
+
 /* =========================
    ADMIN LOGIN
 ========================= */
@@ -133,11 +122,23 @@ function adminLogin() {
 
         saveLogin("Admin", username);
 
-        alert("Admin login successful");
+        const loader = document.getElementById("loadingScreen");
 
-        setTimeout(() => {
+        if (loader) {
+            loader.style.display = "flex";
+
+            const loadingText = loader.querySelector("h2");
+
+            if (loadingText) {
+                loadingText.textContent = "Admin login successful...";
+            }
+
+            setTimeout(() => {
+                window.location.href = "admin.html";
+            }, 1500);
+        } else {
             window.location.href = "admin.html";
-        }, 1000);
+        }
 
     } else {
         alert("Invalid admin credentials");
@@ -153,11 +154,7 @@ function oauthLogin(provider) {
 
     saveLogin(provider, provider + "_user");
 
-    alert(provider + " login successful");
-
-    setTimeout(() => {
-        window.location.href = "index.html";
-    }, 1000);
+    window.location.href = "index.html";
 }
 
 /* =========================
@@ -175,7 +172,7 @@ function protectAdminPage() {
 }
 
 /* =========================
-   HIDE ADMIN NAV
+   ADMIN BUTTON CONTROL
 ========================= */
 function controlAdminButton() {
     const adminLink = document.querySelector('a[href="admin.html"]');
@@ -187,7 +184,7 @@ function controlAdminButton() {
 }
 
 /* =========================
-   USERNAME IN NAVBAR
+   NAVBAR USERNAME
 ========================= */
 function updateNavbarUser() {
     const loginNav = document.getElementById("loginNav");
@@ -195,6 +192,55 @@ function updateNavbarUser() {
 
     if (loginNav && currentUser) {
         loginNav.textContent = currentUser;
+    }
+}
+
+/* =========================
+   CONTACT FORM
+========================= */
+function sendContactMessage() {
+    const name = document.getElementById("contactName")?.value;
+    const email = document.getElementById("contactEmail")?.value;
+    const message = document.getElementById("contactMessage")?.value;
+
+    if (!name || !email || !message) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    let messages = JSON.parse(localStorage.getItem("contactMessages")) || [];
+
+    messages.unshift({
+        name: name,
+        email: email,
+        message: message,
+        time: new Date().toLocaleString()
+    });
+
+    localStorage.setItem("contactMessages", JSON.stringify(messages));
+
+    const loader = document.getElementById("loadingScreen");
+
+    if (loader) {
+        loader.style.display = "flex";
+
+        const loadingText = loader.querySelector("h2");
+
+        if (loadingText) {
+            loadingText.textContent = "Message sent successfully...";
+        }
+
+        setTimeout(() => {
+            loader.style.display = "none";
+
+            if (loadingText) {
+                loadingText.textContent = "Finding Competitive Match...";
+            }
+
+            document.getElementById("contactName").value = "";
+            document.getElementById("contactEmail").value = "";
+            document.getElementById("contactMessage").value = "";
+        }, 1500);
     }
 }
 
@@ -207,39 +253,69 @@ function loadAdminData() {
     const totalUsers = document.getElementById("totalUsers");
     const totalLogins = document.getElementById("totalLogins");
     const topRank = document.getElementById("topRank");
-
-    if (!userTable || !historyTable) return;
+    const messageTable = document.getElementById("messageTable");
 
     let users = JSON.parse(localStorage.getItem("users")) || [];
     let history = JSON.parse(localStorage.getItem("loginHistory")) || [];
+    let messages = JSON.parse(localStorage.getItem("contactMessages")) || [];
 
-    userTable.innerHTML = "";
-    historyTable.innerHTML = "";
+    if (userTable) {
+        userTable.innerHTML = "";
 
-    users.forEach((user, index) => {
-        userTable.innerHTML += `
-            <div class="table-row">
-                <span>${user.username}</span>
+        users.forEach((user, index) => {
+            userTable.innerHTML += `
+                <div class="table-row">
+                    <span>${user.username}</span>
 
-                <select onchange="updateRank(${index}, this.value)">
-                    <option ${user.rank === "ROOKIE" ? "selected" : ""}>ROOKIE</option>
-                    <option ${user.rank === "GOLD" ? "selected" : ""}>GOLD</option>
-                    <option ${user.rank === "DIAMOND" ? "selected" : ""}>DIAMOND</option>
-                    <option ${user.rank === "MASTER" ? "selected" : ""}>MASTER</option>
-                    <option ${user.rank === "TITAN" ? "selected" : ""}>TITAN</option>
-                </select>
-            </div>
-        `;
-    });
+                    <select onchange="updateRank(${index}, this.value)">
+                        <option ${user.rank === "ROOKIE" ? "selected" : ""}>ROOKIE</option>
+                        <option ${user.rank === "GOLD" ? "selected" : ""}>GOLD</option>
+                        <option ${user.rank === "DIAMOND" ? "selected" : ""}>DIAMOND</option>
+                        <option ${user.rank === "MASTER" ? "selected" : ""}>MASTER</option>
+                        <option ${user.rank === "TITAN" ? "selected" : ""}>TITAN</option>
+                    </select>
+                </div>
+            `;
+        });
+    }
 
-    history.forEach(item => {
-        historyTable.innerHTML += `
-            <div class="table-row">
-                <span>${item.username} (${item.type})</span>
-                <span>${item.time}</span>
-            </div>
-        `;
-    });
+    if (historyTable) {
+        historyTable.innerHTML = "";
+
+        history.forEach(item => {
+            historyTable.innerHTML += `
+                <div class="table-row">
+                    <span>${item.username} (${item.type})</span>
+                    <span>${item.time}</span>
+                </div>
+            `;
+        });
+    }
+
+    if (messageTable) {
+        messageTable.innerHTML = "";
+
+        if (messages.length === 0) {
+            messageTable.innerHTML = `
+                <div class="table-row">
+                    <span>No messages yet</span>
+                </div>
+            `;
+        } else {
+            messages.forEach(msg => {
+                messageTable.innerHTML += `
+                    <div class="table-row">
+                        <div>
+                            <strong>${msg.name}</strong><br>
+                            <small>${msg.email}</small><br>
+                            ${msg.message}
+                        </div>
+                        <span>${msg.time}</span>
+                    </div>
+                `;
+            });
+        }
+    }
 
     if (totalUsers) totalUsers.textContent = users.length;
     if (totalLogins) totalLogins.textContent = history.length;
@@ -315,20 +391,7 @@ function initCursor() {
 }
 
 /* =========================
-   INIT
-========================= */
-window.addEventListener("load", function () {
-    protectAdminPage();
-    controlAdminButton();
-    updateNavbarUser();
-    loadAdminData();
-    revealOnScroll();
-    typeHeroText();
-    initCursor();
-});
-
-/* =========================
-   game launching simulation
+   GAME LAUNCH
 ========================= */
 function launchGame(gameName) {
     const loader = document.getElementById("loadingScreen");
@@ -363,26 +426,30 @@ function launchGame(gameName) {
         }, 4500);
     }
 }
-VanillaTilt.init(document.querySelectorAll(".premium-card, .esport-card, .stat-box, .player-card"), {
-    max: 10,
-    speed: 400,
-    glare: true,
-    "max-glare": 0.2
-});
+
 /* =========================
-   Node JS
+   INIT
 ========================= */
-const express = require("express");
-const path = require("path");
+window.addEventListener("load", function () {
+    protectAdminPage();
+    controlAdminButton();
+    updateNavbarUser();
+    loadAdminData();
+    revealOnScroll();
+    typeHeroText();
+    initCursor();
 
-const app = express();
-
-app.use(express.static(__dirname));
-
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
-});
-
-app.listen(3000, () => {
-    console.log("SkillSync running on http://localhost:3000");
+    if (typeof VanillaTilt !== "undefined") {
+        VanillaTilt.init(
+            document.querySelectorAll(
+                ".premium-card, .esport-card, .stat-box, .player-card"
+            ),
+            {
+                max: 10,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.2
+            }
+        );
+    }
 });
