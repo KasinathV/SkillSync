@@ -209,7 +209,7 @@ Used for:
 - layouts
 - navigation
 
-### CSS3
+### CSS
 Used for:
 
 - styling
