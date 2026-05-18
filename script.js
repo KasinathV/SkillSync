@@ -1,6 +1,4 @@
-/* =========================
-   POPUP
-========================= */
+/* POPUP */
 function openPopup() {
     const popup = document.getElementById("popup");
     if (popup) popup.style.display = "flex";
@@ -18,9 +16,7 @@ window.addEventListener("click", function (e) {
     }
 });
 
-/* =========================
-   MATCHMAKING
-========================= */
+/*  MATCHMAKING */
 function startMatchmaking() {
     closePopup();
 
@@ -41,9 +37,7 @@ function startMatchmaking() {
     }
 }
 
-/* =========================
-   SAVE LOGIN
-========================= */
+/* SAVE LOGIN*/
 function saveLogin(type, username) {
     let history = JSON.parse(localStorage.getItem("loginHistory")) || [];
     let users = JSON.parse(localStorage.getItem("users")) || [];
@@ -67,9 +61,7 @@ function saveLogin(type, username) {
     localStorage.setItem("users", JSON.stringify(users));
 }
 
-/* =========================
-   USER LOGIN
-========================= */
+/* USER LOGIN */
 function userLogin() {
     const username = document.getElementById("username")?.value;
     const captchaResponse =
@@ -109,9 +101,7 @@ function userLogin() {
     }
 }
 
-/* =========================
-   ADMIN LOGIN
-========================= */
+/* ADMIN LOGIN */
 function adminLogin() {
     const username = document.getElementById("username")?.value;
     const password = document.getElementById("password")?.value;
