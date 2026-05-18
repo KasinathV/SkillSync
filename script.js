@@ -426,7 +426,39 @@ function launchGame(gameName) {
         }, 4500);
     }
 }
-
+function initParticles() {
+    if (typeof particlesJS !== "undefined") {
+        particlesJS("particles-js", {
+            particles: {
+                number: {
+                    value: 80
+                },
+                color: {
+                    value: "#d4af37"
+                },
+                shape: {
+                    type: "circle"
+                },
+                opacity: {
+                    value: 0.4
+                },
+                size: {
+                    value: 3
+                },
+                move: {
+                    enable: true,
+                    speed: 2
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 140,
+                    color: "#d4af37",
+                    opacity: 0.2
+                }
+            }
+        });
+    }
+}
 /* =========================
    INIT
 ========================= */
@@ -438,6 +470,7 @@ window.addEventListener("load", function () {
     revealOnScroll();
     typeHeroText();
     initCursor();
+    initParticles();
 
     if (typeof VanillaTilt !== "undefined") {
         VanillaTilt.init(
